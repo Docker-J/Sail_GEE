@@ -100,6 +100,20 @@ static struct pm_qos_object network_throughput_pm_qos = {
 	.name = "network_throughput",
 };
 
+static BLOCKING_NOTIFIER_HEAD(max_online_cpus_notifier);
+static struct pm_qos_constraints max_online_cpus_constraints = {
+	.list = PLIST_HEAD_INIT(max_online_cpus_constraints.list),
+	.target_value = PM_QOS_MAX_ONLINE_CPUS_DEFAULT_VALUE,
+	.default_value = PM_QOS_MAX_ONLINE_CPUS_DEFAULT_VALUE,
+	.type = PM_QOS_MIN,
+	.notifiers = &max_online_cpus_notifier,
+};
+static struct pm_qos_object max_online_cpus_pm_qos = {
+	.constraints = &max_online_cpus_constraints,
+	.name = "max_online_cpus",
+
+};
+
 
 static BLOCKING_NOTIFIER_HEAD(cpu_dma_throughput_notifier);
 static struct pm_qos_constraints cpu_dma_tput_constraints = {
@@ -135,6 +149,7 @@ static struct pm_qos_object *pm_qos_array[] = {
 	&network_throughput_pm_qos,
 	&cpu_dma_throughput_pm_qos,
 	&dvfs_lat_pm_qos,
+	&max_online_cpus_pm_qos
 };
 
 static ssize_t pm_qos_power_write(struct file *filp, const char __user *buf,
