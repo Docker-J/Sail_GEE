@@ -114,7 +114,6 @@ static struct pm_qos_object max_online_cpus_pm_qos = {
 
 };
 
-
 static BLOCKING_NOTIFIER_HEAD(cpu_dma_throughput_notifier);
 static struct pm_qos_constraints cpu_dma_tput_constraints = {
 	.list = PLIST_HEAD_INIT(cpu_dma_tput_constraints.list),
@@ -142,6 +141,33 @@ static struct pm_qos_object dvfs_lat_pm_qos = {
 	.name = "dvfs_latency",
 };
 
+static BLOCKING_NOTIFIER_HEAD(cpu_freq_min_notifier);
+static struct pm_qos_constraints cpu_freq_min_constraints = {
+	.list = PLIST_HEAD_INIT(cpu_freq_min_constraints.list),
+	.target_value = PM_QOS_CPU_FREQ_MIN_DEFAULT_VALUE,
+	.default_value = PM_QOS_CPU_FREQ_MIN_DEFAULT_VALUE,
+	.type = PM_QOS_MAX,
+	.notifiers = &cpu_freq_min_notifier,
+};
+static struct pm_qos_object cpu_freq_min_pm_qos = {
+	.constraints = &cpu_freq_min_constraints,
+	.name = "cpu_freq_min",
+};
+
+
+static BLOCKING_NOTIFIER_HEAD(cpu_freq_max_notifier);
+static struct pm_qos_constraints cpu_freq_max_constraints = {
+	.list = PLIST_HEAD_INIT(cpu_freq_max_constraints.list),
+	.target_value = PM_QOS_CPU_FREQ_MAX_DEFAULT_VALUE,
+	.default_value = PM_QOS_CPU_FREQ_MAX_DEFAULT_VALUE,
+	.type = PM_QOS_MIN,
+	.notifiers = &cpu_freq_max_notifier,
+};
+static struct pm_qos_object cpu_freq_max_pm_qos = {
+	.constraints = &cpu_freq_max_constraints,
+	.name = "cpu_freq_max",
+};
+
 static struct pm_qos_object *pm_qos_array[] = {
 	&null_pm_qos,
 	&cpu_dma_pm_qos,
@@ -150,6 +176,9 @@ static struct pm_qos_object *pm_qos_array[] = {
 	&cpu_dma_throughput_pm_qos,
 	&dvfs_lat_pm_qos,
 	&max_online_cpus_pm_qos
+	&max_online_cpus_pm_qos,
+	&cpu_freq_min_pm_qos,
+	&cpu_freq_max_pm_qos,
 };
 
 static ssize_t pm_qos_power_write(struct file *filp, const char __user *buf,
