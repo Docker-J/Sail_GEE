@@ -1909,7 +1909,7 @@ static int copy_msghdr_from_user(struct msghdr *kmsg,
 		return -EINVAL;
 
 	if (kmsg->msg_namelen > sizeof(struct sockaddr_storage))
-		return -EINVAL;
+		kmsg->msg_namelen = sizeof(struct sockaddr_storage);
 	return 0;
 }
 
