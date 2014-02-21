@@ -2502,7 +2502,6 @@ loop_again:
 				testorder = 0;
 
 			if ((buffer_heads_over_limit && is_highmem_idx(i)) ||
-<<<<<<< HEAD
 			    !zone_balanced(zone, testorder,
 					   balance_gap, end_zone)) {
 				shrink_zone(priority, zone, &sc);
