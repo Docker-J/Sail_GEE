@@ -282,10 +282,10 @@ static int __ref _cpu_down(unsigned int cpu, int tasks_frozen)
 	 *
 	 * Wait for the stop thread to go away.
 	 */
-	while (!idle_cpu(cpu))
-		cpu_relax();
 
-	/* This actually kills the CPU. */
+	while (!idle_cpu_relaxed(cpu))
+		cpu_read_relax();
+
 	__cpu_die(cpu);
 
 	/* CPU is completely dead: tell everyone.  Too late to complain. */
