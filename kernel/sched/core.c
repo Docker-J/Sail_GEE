@@ -2193,6 +2193,7 @@ unsigned long this_cpu_load(void)
 }
 
 
+
 /*
  * Global load-average calculations
  *
@@ -2239,6 +2240,14 @@ unsigned long this_cpu_load(void)
  *
  *  This covers the NO_HZ=n code, for extra head-aches, see the comment below.
  */
+
+#ifdef CONFIG_ZRAM_FOR_ANDROID
+unsigned long this_cpu_loadx(int i)
+{
+	struct rq *this = this_rq();
+	return this->cpu_load[i];
+}
+#endif
 
 /* Variables and functions for calc_load */
 static atomic_long_t calc_load_tasks;
