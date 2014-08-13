@@ -1558,6 +1558,12 @@ config CPU_OVERCLOCK_ULTRA
         help
           Krait overclocking up to 1.9 GHz
 
+config GPU_VOLTAGE_TABLE
+	bool "Enable GPU Voltage Table via sysfs for adjustments"
+	default n
+	help
+	  Adreno User Voltage Control
+
 config MSM_AVS_HW
 	bool "Enable Adaptive Voltage Scaling (AVS)"
 	default n
