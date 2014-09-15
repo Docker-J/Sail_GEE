@@ -384,3 +384,4 @@ obj-$(CONFIG_CPU_FREQ_MSM) += cpufreq.o
 
 obj-$(CONFIG_HAS_MACH_MEMUTILS) += memutils/
 
+obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o

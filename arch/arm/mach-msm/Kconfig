@@ -2539,7 +2539,6 @@ config MSM_CPU_PWRCTL
 	  stand alone power collapse operation. Selecting this option
 	  ensures that they are always off.
 
-
 config HAS_MACH_MEMUTILS
 	default n
 	bool "Motorola MSM memcpy enhancements"
@@ -2550,7 +2549,7 @@ config FORCE_FAST_CHARGE
 	bool "Force AC charge mode at will"
 	default y
 	help
-		A simple sysfs interface to force adapters that
-		are detected as USB to charge as AC.
+	  A simple sysfs interface to force adapters that
+	  are detected as USB to charge as AC.
 
 endif
