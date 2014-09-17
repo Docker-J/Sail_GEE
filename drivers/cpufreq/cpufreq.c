@@ -697,6 +697,7 @@ cpufreq_freq_attr_rw(scaling_governor);
 cpufreq_freq_attr_rw(scaling_setspeed);
 #ifdef CONFIG_MSM_CPU_VOLTAGE_CONTROL
 cpufreq_freq_attr_rw(UV_mV_table);
+#endif
 #ifdef CONFIG_GPU_VOLTAGE_TABLE
 cpufreq_freq_attr_rw(gpu_mv_table);
 #endif
@@ -716,6 +717,7 @@ static struct attribute *default_attrs[] = {
 	&scaling_setspeed.attr,
 #ifdef CONFIG_MSM_CPU_VOLTAGE_CONTROL
 	&UV_mV_table.attr,
+#endif
 #ifdef CONFIG_GPU_VOLTAGE_TABLE
 	&gpu_mv_table.attr,
 #endif
