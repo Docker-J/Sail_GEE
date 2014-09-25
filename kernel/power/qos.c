@@ -277,9 +277,8 @@ static struct pm_qos_object *pm_qos_array[] = {
 	&network_throughput_pm_qos,
 	&cpu_dma_throughput_pm_qos,
 	&dvfs_lat_pm_qos,
-	&max_online_cpus_pm_qos
-	&min_online_cpus_pm_qos,
 	&max_online_cpus_pm_qos,
+	&min_online_cpus_pm_qos,
 	&cpu_freq_min_pm_qos,
 	&cpu_freq_max_pm_qos,
 	&gpu_freq_min_pm_qos,
