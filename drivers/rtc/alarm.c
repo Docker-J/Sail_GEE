@@ -507,7 +507,6 @@ static int alarm_resume(struct platform_device *pdev)
 									false);
 	spin_unlock_irqrestore(&alarm_slock, flags);
 
-	set_alarm_time_to_rtc(power_on_alarm);
 	return 0;
 }
 
@@ -684,4 +683,3 @@ static void  __exit alarm_exit(void)
 late_initcall(alarm_late_init);
 module_init(alarm_driver_init);
 module_exit(alarm_exit);
-
