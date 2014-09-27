@@ -26,6 +26,9 @@
 #include "mipi_dsi.h"
 #include "mipi_lgit.h"
 #include "mdp4.h"
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
 
 static struct msm_panel_common_pdata *mipi_lgit_pdata;
 
@@ -77,6 +80,9 @@ static int mipi_lgit_lcd_on(struct platform_device *pdev)
 	struct msm_fb_data_type *mfd;
 	int ret = 0;
 
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
+#endif
 	pr_info("%s started\n", __func__);
 
 	mfd = platform_get_drvdata(pdev);
@@ -126,6 +132,11 @@ static int mipi_lgit_lcd_on(struct platform_device *pdev)
 		return ret;
 	}
 
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
+#endif
+	lcd_isactive = 1;
+
 	pr_info("%s finished\n", __func__);
 	return 0;
 }
@@ -134,6 +145,10 @@ static int mipi_lgit_lcd_off(struct platform_device *pdev)
 {
 	struct msm_fb_data_type *mfd;
 	int ret = 0;
+
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
+#endif
 
 	pr_info("%s started\n", __func__);
 
@@ -176,6 +191,9 @@ static int mipi_lgit_lcd_off(struct platform_device *pdev)
 		return ret;
 	}
 
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
+#endif
 	pr_info("%s finished\n", __func__);
 	return 0;
 }
