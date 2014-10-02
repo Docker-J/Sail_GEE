@@ -263,7 +263,7 @@ static void mdm_setup_vddmin_gpios(void)
 				   __func__, mdev->mdm_data.device_id);
 		else {
 			ret = request_threaded_irq(irq, NULL, mdm_vddmin_change,
-				IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING,
+				IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING| IRQF_ONESHOT,
 				"mdm lpm", mdev);
 
 			if (ret < 0)
@@ -986,7 +986,8 @@ errfatal_err:
 	}
 
 	ret = request_threaded_irq(irq, NULL, mdm_status_change,
-		IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING | IRQF_SHARED,
+		IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING | IRQF_SHARED | 
+		IRQF_ONESHOT,
 		"mdm status", mdev);
 
 	if (ret < 0) {
@@ -1007,7 +1008,7 @@ status_err:
 
 		ret = request_threaded_irq(irq, NULL, mdm_pblrdy_change,
 				IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING |
-				IRQF_SHARED,
+				IRQF_SHARED | IRQF_ONESHOT,
 				"mdm pbl ready", mdev);
 
 		if (ret < 0) {
