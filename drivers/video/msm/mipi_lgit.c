@@ -21,9 +21,6 @@
 #include <linux/string.h>
 #include <linux/gpio.h>
 #include <linux/syscore_ops.h>
-#ifdef CONFIG_FB_MSM_LCD_NOTIFY
-#include <linux/lcd_notify.h>
-#endif
 
 #include <linux/device.h>
 #include <linux/miscdevice.h>
@@ -85,9 +82,6 @@ static int mipi_lgit_lcd_on(struct platform_device *pdev)
 	struct msm_fb_data_type *mfd;
 	int ret = 0;
 
-#ifdef CONFIG_FB_MSM_LCD_NOTIFY
-	lcd_notifier_call_chain(LCD_EVENT_ON_START, NULL);
-#endif
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
 #endif
@@ -140,9 +134,6 @@ static int mipi_lgit_lcd_on(struct platform_device *pdev)
 		return ret;
 	}
 
-#ifdef CONFIG_FB_MSM_LCD_NOTIFY
-	lcd_notifier_call_chain(LCD_EVENT_ON_END, NULL);
-#endif
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
 #endif
@@ -202,9 +193,6 @@ static int mipi_lgit_lcd_off(struct platform_device *pdev)
 		return ret;
 	}
 
-#ifdef CONFIG_FB_MSM_LCD_NOTIFY
-	lcd_notifier_call_chain(LCD_EVENT_OFF_END, NULL);
-#endif
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
 #endif
