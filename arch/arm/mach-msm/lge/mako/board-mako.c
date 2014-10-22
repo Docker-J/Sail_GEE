@@ -127,12 +127,6 @@
 #define PCIE_PWR_EN_PMIC_GPIO 13
 #define PCIE_RST_N_PMIC_MPP 1
 
-=======
-#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND
-int id_set_two_phase_freq(int cpufreq);
-#endif
-
->>>>>>> 14d63b9... intelli/msm_thermal: initial coding for Qualcomm S4 Pro devices
 static bool mako_charger_mode;
 
 static int __init mako_androidboot_mode_arg(char *options)
