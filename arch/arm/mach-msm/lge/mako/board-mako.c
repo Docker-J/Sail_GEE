@@ -2157,10 +2157,6 @@ out:
 static void __init apq8064_mako_init(void)
 {
 
-#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND
-	id_set_two_phase_freq(1134000);
-#endif
-
 	if (meminfo_init(SYS_MEMORY, SZ_256M) < 0)
 		pr_err("meminfo_init() failed!\n");
 	apq8064_common_init();
